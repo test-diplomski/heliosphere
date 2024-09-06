@@ -20,14 +20,15 @@ jobs:
 
         - name: Update and tidy Go modules
           run: go mod tidy
+          working-directory: ./rate-limiter-service
     
         - name: Install dependencies
           run: go mod download
-          working-directory: ./ 
+          working-directory: ./rate-limiter-service 
 
         - name: Build
           run: go build -v ./...
-          working-directory: ./ 
+          working-directory: ./rate-limiter-service
   # docker:
   #   runs-on: ubuntu-latest
   #   needs: go-ci
@@ -52,4 +53,4 @@ jobs:
   #         context: .
   #         file: Dockerfile
   #         push: true
-  #         tags: ${{ secrets.DOCKERHUB_USERNAME }}/heliosphere/rate-limiter-service:latest
+  #         tags: ${{ secrets.DOCKERHUB_USERNAME }}/heliosphere:latest
